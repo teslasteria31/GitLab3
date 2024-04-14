@@ -30,11 +30,11 @@ MusicLibrary* functions::create(int& n) {
 
     // add new elements to array
 
-MusicLibrary* functions::addMusicLibrary(MusicLibrary** arr, int& n, int& m) {
+MusicLibrary* functions::addMusicLibrary(MusicLibrary* arr, int& n, int& m) {
     MusicLibrary* newArr = new MusicLibrary[n + m];
 
     for (int i = 0; i < n; i++) {
-        newArr[i] = *arr[i];
+        newArr[i] = arr[i];
     }
 
     for (int i = n; i < n + m; i++) {
@@ -50,11 +50,11 @@ MusicLibrary* functions::addMusicLibrary(MusicLibrary** arr, int& n, int& m) {
         newArr[i].setAlbum(album);
     }
     
-    delete[] * arr;
-    *arr = newArr; 
+    delete[] arr;
+    arr = newArr; 
     n += m; // Увеличиваем счетчик элементов
 
-    return *arr;
+    return arr;
 }
 
     // print created array in terminal
@@ -64,7 +64,7 @@ MusicLibrary* functions::print_arr(MusicLibrary* arr, const int& n) {
     for (int i = 0; i < n; i++) {
         cout << "|id: " << i << " |Title: " << arr[i].getTitle() << endl;
         cout << "|id: " << i << " |Artist: " << arr[i].getArtist() << endl;
-        cout << "|id: " << i << " |Album: " << arr[i].getAlbum() << endl;
+        cout << "|id: " << i << " |Album: " << arr[i].getAlbum() << endl << endl;
     }
 
     return arr;
@@ -72,8 +72,59 @@ MusicLibrary* functions::print_arr(MusicLibrary* arr, const int& n) {
 
     // delete element by ID
 
-MusicLibrary* functions::deleteID(MusicLibrary* arr, const int& n) {
-    return 0;
+MusicLibrary* functions::deleteID(MusicLibrary* arr, int& n, const int& id) {
+    if (id < 0 || id >= n) {
+        cout << "|Invalid ID. No element was deleted.\n";
+        return 0;
+    }
+
+    MusicLibrary* delArr = new MusicLibrary[n - 1];
+
+    int newIndex = 0;
+    for (int i = 0; i < n; i++) {
+        if (i != id) {
+            delArr[newIndex] = arr[i];
+            newIndex++;
+        }
+    }
+
+    delete[] arr;
+    arr = delArr;
+    n--;
+
+    return arr;
+}
+
+    // search element by ID
+
+void functions::searchID(MusicLibrary* arr, int& n, const int& id) {
+    MusicLibrary* searchArr = new MusicLibrary[n];
+    if (id < 0 || id >= n) {
+        cout << "|Invalid ID. No element was deleted.\n";
+        return;
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (i = id) {
+            cout << "\n|The search is over, this is your element:" << endl;
+            cout << "\n|id: " << i << " |Title: " << arr[i].getTitle() << endl;
+            cout << "|id: " << i << " |Artist: " << arr[i].getArtist() << endl;
+            cout << "|id: " << i << " |Album: " << arr[i].getAlbum() << endl << endl;
+        }
+        break;
+    }
+}
+
+    // change an element
+
+MusicLibrary* functions::changeID(MusicLibrary * arr, int& n, const int& id) {
+    MusicLibrary* searchArr = new MusicLibrary[n];
+    if (id < 0 || id >= n) {
+        cout << "|Invalid ID. No element was deleted.\n";
+        return 0;
+    }
+
+
 }
 
     // saving new elements to file

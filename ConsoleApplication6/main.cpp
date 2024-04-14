@@ -12,8 +12,7 @@ int main() {
     MusicLibrary* arr = nullptr;
     string YN;
     bool toggle = true;
-    int n, m;
-    int option;
+    int n{}, m{}, d_id{}, s_id{}, option{};
 
     // greating moment
 
@@ -30,6 +29,7 @@ int main() {
         case 1:
 
             // create and record elements to array
+            creating:
 
             cout << "\n|Enter how much songs would you like to record: ";
             cin >> n;
@@ -42,34 +42,72 @@ int main() {
         case 2:
             // add new elements to array
 
+            if (n < 1) {
+                cout << "\n|You didn't create an array yet, please, create a new one" << endl;
+                goto creating;
+                
+            }
+
             cout << "\n|Enter how much songs would you like to add: ";
             cin >> m;
             if (m < 1) return 0;
 
-            arr = addMusicLibrary(&arr, n, m);
+            arr = addMusicLibrary(arr, n, m);
 
             break;
         case 3:
 
             // print db array in terminal 
 
+            if (n < 1) {
+                cout << "\n|You didn't create an array yet, please, create a new one" << endl;
+                goto creating;
+            }
+
             print_arr(arr, n);
             break;
 
         case 4:
+
             // search
+
+            if (n < 1) {
+                cout << "\n|You didn't create an array yet, please, create a new one" << endl;
+                goto creating;
+            }
+
+            cout << "\n|Enter ID of searching element: ";
+            cin >> s_id;
+
+            searchID(arr, n, s_id);
             break;
 
         case 5:
 
             //delete
 
+            if (n < 1) {
+                cout << "\n|You didn't create an array yet, please, create a new one" << endl;
+                goto creating;
+            }
 
+            print_arr(arr, n);
+            
+            cout << "|Enter ID of deleting element: ";
+            cin >> d_id;
 
+            arr = deleteID(arr, n, d_id);
             break;
 
         case 6:
+
             // change
+
+            if (n < 1) {
+                cout << "\n|You didn't create an array yet, please, create a new one" << endl;
+                goto creating;
+            }
+
             break;
 
         case 7:
@@ -117,6 +155,9 @@ int main() {
         else  { toggle = false; }
     }
 
+    if (arr != nullptr) {
+        delete[] arr;
+    }
     exit();
     return 0;
 }

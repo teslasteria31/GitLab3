@@ -7,9 +7,11 @@ namespace functions {
 	// main functions
 
 	MusicLibrary* create(int& n);
-	MusicLibrary* addMusicLibrary(MusicLibrary** arr, int& n, int& m);
+	MusicLibrary* addMusicLibrary(MusicLibrary* arr, int& n, int& m);
 	MusicLibrary* print_arr(MusicLibrary* arr, const int& n);
-	MusicLibrary* deleteID(MusicLibrary* arr, const int& n);
+	MusicLibrary* deleteID(MusicLibrary* arr, int& n, const int& id);
+	MusicLibrary* changeID(MusicLibrary* arr, int& n, const int& id);
+	void searchID(MusicLibrary* arr, int& n, const int& id);
 	void save(MusicLibrary* arr, const int& n);
 	//void change(MusicLibrary* arr, const int& n);
 	//void search_(MusicLibrary* arr, const int& n);
