@@ -118,13 +118,28 @@ void functions::searchID(MusicLibrary* arr, int& n, const int& id) {
     // change an element
 
 MusicLibrary* functions::changeID(MusicLibrary * arr, int& n, const int& id) {
-    MusicLibrary* searchArr = new MusicLibrary[n];
+    MusicLibrary* changeArr = new MusicLibrary[n];
     if (id < 0 || id >= n) {
         cout << "|Invalid ID. No element was deleted.\n";
         return 0;
     }
 
-
+    for (int i = 0; i < n; i++) {
+        if (i == id) {
+            string title, artist, album;
+            cout << "\n|Title: ";
+            cin >> title;
+            cout << "|Artist: ";
+            cin >> artist;
+            cout << "|Album: ";
+            cin >> album;
+            arr[i].setTitle(title);
+            arr[i].setArtist(artist);
+            arr[i].setAlbum(album);
+            return arr;
+        }
+    }
+    return arr;
 }
 
     // saving new elements to file

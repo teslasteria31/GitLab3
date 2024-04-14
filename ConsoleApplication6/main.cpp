@@ -12,7 +12,7 @@ int main() {
     MusicLibrary* arr = nullptr;
     string YN;
     bool toggle = true;
-    int n{}, m{}, d_id{}, s_id{}, option{};
+    int n{}, m{}, d_id{}, s_id{}, c_id{}, option{};
 
     // greating moment
 
@@ -108,6 +108,10 @@ int main() {
                 goto creating;
             }
 
+            cout << "\n|Enter ID of changing element: ";
+            cin >> c_id;
+
+            arr = changeID(arr, n, c_id);
             break;
 
         case 7:
